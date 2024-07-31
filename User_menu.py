@@ -13,7 +13,7 @@ class User:
         self.mainw=mainw
 
     def user_mainmenu(self,a,b):
-        self.mainw.iconbitmap(r'C:\Sistema_vendas_tkinter_copia\images\icon.ico')
+        self.mainw.iconbitmap(r'C:\Users\joaov\Documents\Sistema_tkinter_2021\images\icon.ico')
         self.mainframe = LabelFrame(self.mainw, width=800, height=140, bg="#f7f7f7")
         self.mainframe.place(x=330, y=120)
         mi = PhotoImage(file="images/carrinho.png")
@@ -71,7 +71,7 @@ class User:
         self.tree.heading('Product Name', text="Produto Nome", anchor=W)
         self.tree.heading('Description', text="Descricao", anchor=W)
         self.tree.heading('Category', text="Categoria", anchor=W)
-        self.tree.heading('Price', text="Preco", anchor=W)
+        self.tree.heading('Price', text="Preço", anchor=W)
         self.tree.heading('Stocks', text="Estoque", anchor=W)
         self.tree.grid(row=1, column=0, sticky="W")
         scrollbary.config(command=self.tree.yview)
@@ -138,7 +138,7 @@ class User:
        
         Label(self.tableframe1, text="N_Cupon. ", font="roboto 14 bold", bg="#9ACD32").grid(row=0, column=0)
        
-        va=0
+        va = 0
         va += 65
         
         Entry(self.entryframe1,  font="roboto 14", bg="#FFFFFF", width=25, state='readonly').place(x=162, y=0,height = 40)
