@@ -1,19 +1,17 @@
-import customtkinter
+from customtkinter import *
 import sqlite3
-from tkinter import *
 from tkinter import messagebox
-from tkinter import ttk
 
 
 class Login:
 
     def __init__(self):
-        self.loginw=Tk()
+        self.loginw = CTk()
         
         self.loginw.title("Login")
         width = 500
         height = 600
-        self.loginw.iconbitmap(r'C:\Users\joaov\Documents\Sistema_tkinter_2021\images\icon.ico')
+        self.loginw.iconbitmap(r'.\images\icon.ico')
         screen_width = self.loginw.winfo_screenwidth()
         screen_height = self.loginw.winfo_screenheight()
         x = (screen_width / 2) - (width / 2)
@@ -47,19 +45,23 @@ class Login:
   
 
     def obj(self):
-        self.loginframe=LabelFrame(self.loginw,bg="#1F5673",height=400,width=300)
-        self.loginw.bind('<Return>')
-        self.loginframe.place(x=103,y=95)
-        self.toplabel = Label(self.loginframe, fg="white", bg="#1F5673", anchor="center", text="Login", font="Roboto 40 bold")
-        self.toplabel.place(x=75,y=25)
-        self.us = ttk.Entry(self.loginframe, width=20, textvariable=self.username,font="Roboto 14 ")
-        self.us.place(x=35,y=145,height=40)
-        self.pa = ttk.Entry(self.loginframe, width=20, textvariable=self.password,font="Roboto 14 ")
-        self.pa.place(x=35,y=185,height=40)
+        self.loginframe = CTkFrame(self.loginw, width=300, height=400, fg_color="#1F5673")
+        self.loginframe.place(x=103, y=95)
+
+        self.toplabel = CTkLabel(self.loginframe, text="Login", text_color="white", font=("Roboto", 40, "bold"))
+        self.toplabel.place(x=75, y=25)
+
+        self.us = CTkEntry(self.loginframe, width=200, height=40, textvariable=self.username, font=("Roboto", 14))
+        self.us.place(x=35, y=145)
+
+        self.pa = CTkEntry(self.loginframe, width=200, height=40, textvariable=self.password, font=("Roboto", 14))
+        self.pa.place(x=35, y=185)
+
         self.us.bind('<Button-1>', self.onclick)
         self.pa.bind('<Button-1>', self.onclick1)
-        self.signin = Button(self.loginframe,width=20, text="ENTRAR",bg="#008B8B",fg="white",bd="0",command=self.checkuser,font="Roboto 14")
-        self.signin.place(x=35,y=290)
+
+        self.signin = CTkButton(self.loginframe, width=200, height=40, text="ENTRAR", fg_color="#008B8B", text_color="white", command=self.checkuser, font=("Roboto", 14))
+        self.signin.place(x=35, y=290)
 
     def checkuser(self):
         if not hasattr(self, 'cur'):
@@ -76,21 +78,20 @@ class Login:
             self.fail()
 
     def success(self):
-        messagebox.showinfo("Success","Login successful")
+        messagebox.showinfo("Success", "Login successful")
         self.loginw.quit()
     
-    
     def fail(self):
-        messagebox.showerror("ATENCAO","USUARIO OU SENHA INCORRETAS")
+        messagebox.showerror("ATENCAO", "USUARIO OU SENHA INCORRETAS")
 
-    
+    def onclick(self, event):
+        self.us.delete(0, "end")
 
-    def onclick(self,event):
-       
-            self.us.delete(0, "end")
+    def onclick1(self, event):
+        self.pa.delete(0, "end")
+        self.pa.config(show="*")
 
-    def onclick1(self,event):
-       
-            self.pa.delete(0, "end")
-            self.pa.config(show = "*")
 
+if __name__ == "__main__":
+    app = Login()
+    app.loginw.mainloop()
